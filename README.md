@@ -32,3 +32,5 @@ The following data is scraped for each movie:
 You can install the required libraries using pip:
 ```bash
 pip install requests pandas beautifulsoup4
+```
+

@@ -33,13 +33,3 @@ You can install the required libraries using pip:
 ```bash
 pip install requests pandas beautifulsoup4
 ```
-## Instructions
-
-### Clone the Repository
-
-To clone this repository, run the following command:
-
-```bash
-git clone https://github.com/yourusername/imdb-movie-scraper.git
-cd imdb-movie-scraper
-```

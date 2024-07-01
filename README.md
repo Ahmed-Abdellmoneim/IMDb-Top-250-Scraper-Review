@@ -1,4 +1,4 @@
-# IMDb Top 250 Movies Scraper and Review Analyzer Overview
+# IMDb Top 250 Movies Scraper
 
 This project involves comprehensive web scraping of IMDb's Top 250 movies using Selenium and Python. The objective is to gather detailed data on each movie, including extensive user reviews. We successfully scraped reviews for over 250 movies, storing the data in a CSV file for further analysis.
 

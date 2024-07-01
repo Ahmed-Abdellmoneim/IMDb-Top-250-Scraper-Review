@@ -24,7 +24,7 @@ Using Selenium for web scraping IMDb offers several advantages:
 - **Detailed movie information**: Collects comprehensive details about each movie, including title, rating, release year, image, genre, directors, and full cast.
 - **Scrapes all the user given reviews for analysis**: It fethces all the user given reviews so it could be used in any ML sentemeint analysis problem or classification problem.
 
-## After-processing of the Data
+## Before-processing of the Data
 
 Post-scraping, the data underwent thorough processing and analysis:
 

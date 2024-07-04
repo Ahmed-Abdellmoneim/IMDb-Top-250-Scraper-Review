@@ -24,7 +24,7 @@ def append_to_csv(csv_file_path, data):
 
 URL = "https://m.imdb.com"
 csvReviews = os.path.join(".", "CSV Folder", "Review.csv")
-create_empty_csv_file(csvReviews, headers=["Movie", "Title", "Review", "Rank"])
+# create_empty_csv_file(csvReviews, headers=["Movie", "Title", "Review", "Rank"])
 header = "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 
 options = webdriver.ChromeOptions()
@@ -42,7 +42,7 @@ try:
     )
     print(f"Total Blocks found: {len(Blocks)}")
 
-    for idx, Block in enumerate(tqdm(Blocks, desc="Processing Blocks")):
+    for idx, Block in enumerate(tqdm(Blocks, desc="Processing Blocks"), start=8):
 
         """
         Get The Data of The Movies
@@ -58,6 +58,7 @@ try:
             '//div[@class="sc-b189961a-0 hBZnfJ cli-children"]//h3[@class="ipc-title__text"]',
         )[idx].text
         movieTitle = movieTitle.split(". ", 1)[1]
+        print(f"Getting the reviews for the Movie: {movieTitle}")
 
         # Navigate the Movie Page
         driver.get(movieURL)

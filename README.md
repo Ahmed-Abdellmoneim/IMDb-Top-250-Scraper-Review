@@ -37,7 +37,7 @@ Post-scraping, the data underwent thorough processing and analysis:
 ### Prerequisites
 
 - Python 3.x
-- Required Python libraries: `os`, `time`, `pandas`, `selenium`, `tqdm`
+- Required Python libraries: `os`, `time`, `pandas`, `selenium`, `tqdm` , `streamlit` , `pandas`, `matplotlib`,`plotly`,`joblib`
 
 You can install the required libraries using pip:
 ```bash

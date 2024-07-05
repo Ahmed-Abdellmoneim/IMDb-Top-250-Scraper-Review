@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import joblib
 
-films_df = pd.read_csv('Normalized Sheets\Films.csv')
-genres_df = pd.read_csv('Normalized Sheets\Genres.csv')
-directors_df = pd.read_csv('Normalized Sheets\Directors.csv')
-stars_df = pd.read_csv('Normalized Sheets\Stars.csv')
-film_genre_df = pd.read_csv('Normalized Sheets\FilmGenre.csv')
-film_director_df = pd.read_csv('Normalized Sheets\FilmDirector.csv')
-film_star_df = pd.read_csv('Normalized Sheets\FilmStar.csv')
+films_df = pd.read_csv('Normalized Sheets/Films.csv')
+genres_df = pd.read_csv('Normalized Sheets/Genres.csv')
+directors_df = pd.read_csv('Normalized Sheets/Directors.csv')
+stars_df = pd.read_csv('Normalized Sheets/Stars.csv')
+film_genre_df = pd.read_csv('Normalized Sheets/FilmGenre.csv')
+film_director_df = pd.read_csv('Normalized Sheets/FilmDirector.csv')
+film_star_df = pd.read_csv('Normalized Sheets/FilmStar.csv')
 
 
 # Load pre-trained model

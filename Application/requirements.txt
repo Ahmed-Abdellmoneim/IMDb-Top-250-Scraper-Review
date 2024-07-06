@@ -1,6 +1,7 @@
 keras
 streamlit
 pandas
+numpy
 matplotlib
 plotly
 joblib

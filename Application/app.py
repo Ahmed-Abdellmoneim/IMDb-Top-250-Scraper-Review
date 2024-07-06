@@ -3,15 +3,24 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 import joblib
-import os
+
+import numpy as np
 
 from keras.models import load_model
 from sentence_transformers import SentenceTransformer
 from gensim.models.doc2vec import Doc2Vec
 
 
+
+import os
+print("Current working directory:", os.getcwd())
+models_dir = os.path.join(os.getcwd(), 'Models')
+print("Contents of Models directory:", os.listdir(models_dir))
+
+
+
 # Define the save path for the models
-save_path = 'Models/'
+save_path = 'Models'
 
 # Load pre-trained model
 model_path = os.path.join(save_path, 'deep_learning_classifier_model_complex.h5')

@@ -134,7 +134,7 @@ elif main_page == "Review Rank Prediction":
             )
 
 
-elif main_page == "Analysis Page":
+elif main_page == "IMDb Analysis":
     st.sidebar.title("Analysis Navigation")
     analysis_option = st.sidebar.selectbox(
         "Select a view",

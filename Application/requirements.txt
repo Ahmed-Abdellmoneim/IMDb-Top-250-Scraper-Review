@@ -1,9 +1,9 @@
+keras
 streamlit
 pandas
 matplotlib
 plotly
 joblib
-keras
 gensim
 tensorflow
 sentence-transformers

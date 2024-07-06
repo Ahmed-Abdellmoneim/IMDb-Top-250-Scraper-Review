@@ -3,20 +3,26 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 import joblib
+import os
 
 from keras.models import load_model
 from sentence_transformers import SentenceTransformer
 from gensim.models.doc2vec import Doc2Vec
 
 
+# Define the save path for the models
+save_path = 'Models/'
+
 # Load pre-trained model
-model_path = '/Models/deep_learning_classifier_model_complex.h5'
+model_path = os.path.join(save_path, 'deep_learning_classifier_model_complex.h5')
 model = load_model(model_path)
 
-# Load sentence transformer and Doc2Vec model
-sentence_model_path = '/Models/sentence_transformer_model'
-doc2vec_model_path = '/Models/doc2vec_model'
+# Load SentenceTransformer model
+sentence_model_path = os.path.join(save_path, 'sentence_transformer_model')
 sentence_model = SentenceTransformer(sentence_model_path)
+
+# Load Doc2Vec model
+doc2vec_model_path = os.path.join(save_path, 'doc2vec_model')
 doc2vec_model = Doc2Vec.load(doc2vec_model_path)
 
 

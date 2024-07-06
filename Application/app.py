@@ -10,12 +10,12 @@ from gensim.models.doc2vec import Doc2Vec
 
 
 # Load pre-trained model
-model_path = 'Models/deep_learning_classifier_model_complex.h5'
+model_path = '/Models/deep_learning_classifier_model_complex.h5'
 model = load_model(model_path)
 
 # Load sentence transformer and Doc2Vec model
-sentence_model_path = 'Models/sentence_transformer_model'
-doc2vec_model_path = 'Models/doc2vec_model'
+sentence_model_path = '/Models/sentence_transformer_model'
+doc2vec_model_path = '/Models/doc2vec_model'
 sentence_model = SentenceTransformer(sentence_model_path)
 doc2vec_model = Doc2Vec.load(doc2vec_model_path)
 

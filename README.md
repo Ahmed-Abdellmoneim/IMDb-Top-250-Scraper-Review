@@ -22,7 +22,7 @@ Using Selenium for web scraping IMDb offers several advantages:
 - **Scrapes top-rated movies from IMDb**: Fetches movie details from the IMDb top 250 movies chart.
 - **Stores data in a CSV file**: All the scraped data is stored in a well-structured CSV file for easy access and analysis.
 - **Detailed movie information**: Collects comprehensive details about each movie, including title, rating, release year, image, genre, directors, and full cast.
-- **Scrapes all the user given reviews for analysis**: It fethces all the user given reviews so it could be used in any ML sentemeint analysis problem or classification problem.
+- **Scrapes all the user-given reviews for analysis**: It fetches all the user given reviews so it can be used in any ML sentiment analysis problem or classification problem.
 
 ## Before-processing of the Data
 
@@ -37,9 +37,9 @@ Post-scraping, the data underwent thorough processing and analysis:
 ### Prerequisites
 
 - Python 3.x
-- Required Python libraries: `os`, `time`, `pandas`, `selenium`, `tqdm` , `streamlit` , `pandas`, `matplotlib`,`plotly`,`joblib`
+- Required Python libraries: `os`, `time`, `pandas`, `selenium`, `tqdm`, `streamlit`, `pandas`, `matplotlib`,`plotly`,`joblib`
 
 You can install the required libraries using pip:
 ```bash
-pip install selenium pandas tqdm
+pip install pandas selenium tqdm streamlit matplotlib plotly joblib
 ```

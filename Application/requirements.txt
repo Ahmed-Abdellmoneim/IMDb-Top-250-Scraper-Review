@@ -5,3 +5,5 @@ plotly
 joblib
 keras
 gensim
+tensorflow
+sentence-transformers

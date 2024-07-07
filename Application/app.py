@@ -7,10 +7,9 @@ import torch
 import torch.nn as nn
 from transformers import AutoTokenizer
 import numpy as np
+import os
 
-from transformers import AutoTokenizer
-
-# Use the tokenizer
+# Initialize the tokenizer
 model_name = "bert-base-multilingual-cased"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
@@ -42,21 +41,15 @@ output_dim = 10  # Number of unique ranks (classes)
 model = ReviewRankPredictor(input_dim, hidden_dim, output_dim)
 
 # Load the saved model state dictionary
-model.load_state_dict(torch.load("review_rank_predictor_model.pth"))
+model.load_state_dict(
+    torch.load("review_rank_predictor_model.pth", map_location=torch.device("cpu"))
+)
 model.eval()  # Set the model to evaluation mode
-
-
-import os
-
-print("Current working directory:", os.getcwd())
-models_dir = os.path.join(os.getcwd(), "Models")
-print("Contents of Models directory:", os.listdir(models_dir))
-
 
 # Define the save path for the models
 save_path = "Application/Models/"
 
-
+# Load data files
 films_df = pd.read_csv("Normalized Sheets/Films.csv")
 genres_df = pd.read_csv("Normalized Sheets/Genres.csv")
 directors_df = pd.read_csv("Normalized Sheets/Directors.csv")
@@ -65,44 +58,11 @@ film_genre_df = pd.read_csv("Normalized Sheets/FilmGenre.csv")
 film_director_df = pd.read_csv("Normalized Sheets/FilmDirector.csv")
 film_star_df = pd.read_csv("Normalized Sheets/FilmStar.csv")
 
-
 # Custom CSS
 st.markdown(
     """
     <style>
     .main {
-        # background-color: babyblue;
-        font-family: Arial, sans-serif;
-    }
-    .stButton>button {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
-    .stButton>button:hover {
-        background-color: white;
-        color: black;
-        border: 2px solid #4CAF50;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    th {
-        # background-color: #4CAF50;
         color: white;
         text-align: left;
     }
@@ -114,9 +74,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
 st.sidebar.title("Main Navigation")
-
 main_page = st.sidebar.selectbox(
     "Select a Page", ["Home", "Review Rank Prediction", "Analysis Page"]
 )
@@ -143,18 +101,14 @@ elif main_page == "Review Rank Prediction":
         if headline.strip() == "" or user_text.strip() == "":
             st.error("Please fill out both headline and review fields.")
         elif len(user_text) >= 600:
-            # Preprocess the input text
-            encoding_title = tokenizer(
-                headline,
+            # Combine headline and review
+            combined_text = headline + " " + user_text
+
+            # Tokenize the combined text
+            encoding = tokenizer(
+                combined_text,
                 truncation=True,
-                padding=True,
-                max_length=128,
-                return_tensors="pt",
-            )
-            encoding_review = tokenizer(
-                user_text,
-                truncation=True,
-                padding=True,
+                padding="max_length",
                 max_length=128,
                 return_tensors="pt",
             )
@@ -176,7 +130,6 @@ elif main_page == "Review Rank Prediction":
             st.write(
                 "Please enter a review text with at least 600 characters to get a prediction."
             )
-
 
 elif main_page == "Analysis Page":
     st.sidebar.title("Analysis Navigation")
@@ -206,28 +159,8 @@ elif main_page == "Analysis Page":
         col4.metric("Total Stars", stars_df.shape[0])
 
         st.subheader("Top Rated Films")
-
-        # Custom CSS for the table
-        st.markdown(
-            """
-            <style>
-            .big-table .dataframe {
-                font-size: 18px !important;
-                height: auto !important;
-            }
-            .big-table table {
-                width: 100% !important;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
-
-        # Apply CSS class to make the table larger
         top_rated_films = films_df.nlargest(10, "IMDb Rating")
-        st.markdown('<div class="big-table">', unsafe_allow_html=True)
         st.dataframe(top_rated_films[["Film Title", "IMDb Rating", "Release Year"]])
-        st.markdown("</div>", unsafe_allow_html=True)
 
     if analysis_option == "Genres":
         st.header("Genres")
@@ -250,7 +183,6 @@ elif main_page == "Analysis Page":
         st.plotly_chart(fig)
 
         st.subheader("Genre Co-occurrence")
-
         film_genres = (
             film_genre_df.groupby("FilmID")["GenreID"].apply(list).reset_index()
         )
@@ -258,13 +190,11 @@ elif main_page == "Analysis Page":
         from itertools import combinations
 
         genre_pairs = []
-
         for genres in film_genres["GenreID"]:
             if len(genres) > 1:
                 genre_pairs.extend(combinations(genres, 2))
 
         genre_pair_count = pd.DataFrame(genre_pairs, columns=["Genre1", "Genre2"])
-
         genre_pair_count = genre_pair_count.merge(
             genres_df, left_on="Genre1", right_on="GenreID"
         ).drop(columns=["GenreID"])
@@ -425,8 +355,6 @@ elif main_page == "Analysis Page":
         release_trends.columns = ["Release Year", "Count"]  # Correctly rename columns
         release_trends = release_trends.sort_values("Release Year")
 
-        # Ensure column names are correctly set
-        # st.write(release_trends)  # Print the DataFrame to inspect its structure
         fig = px.line(
             release_trends,
             x="Release Year",

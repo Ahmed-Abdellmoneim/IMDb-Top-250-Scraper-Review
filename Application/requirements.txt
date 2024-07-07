@@ -8,4 +8,3 @@ joblib
 gensim
 tensorflow
 sentence-transformers
-os

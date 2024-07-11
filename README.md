@@ -31,6 +31,8 @@ Post-scraping, the data underwent thorough processing and analysis:
 - **Initial Data Structure**:
   ![Initial Data Structure](./Images/Scraped.png)
 
+## After-Processing of the Data
+
 
 ## How to Use
 

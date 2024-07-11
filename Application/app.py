@@ -51,7 +51,7 @@ import os
 
 # Load data files
 films_df = pd.read_csv("Normalized Sheets/Films.csv")
-genres_df = pd.read_csv("../Normalization Code/Final_Normalized_Sheets/Genres.csv")
+genres_df = pd.read_csv("Normalization Code/Final_Normalized_Sheets/Genres.csv")
 directors_df = pd.read_csv("Normalized Sheets/Directors.csv")
 stars_df = pd.read_csv("Normalized Sheets/Stars.csv")
 film_genre_df = pd.read_csv("Normalized Sheets/FilmGenre.csv")

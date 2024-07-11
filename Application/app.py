@@ -52,11 +52,11 @@ import os
 # Load data files
 films_df = pd.read_csv("Normalized Sheets/Films.csv")
 genres_df = pd.read_csv("Normalization Code/Final_Normalized_Sheets/Genres.csv")
-directors_df = pd.read_csv("Normalized Sheets/Directors.csv")
-stars_df = pd.read_csv("Normalized Sheets/Stars.csv")
-film_genre_df = pd.read_csv("Normalized Sheets/FilmGenre.csv")
-film_director_df = pd.read_csv("Normalized Sheets/FilmDirector.csv")
-film_star_df = pd.read_csv("Normalized Sheets/FilmStar.csv")
+directors_df = pd.read_csv("Normalization Code/Final_Normalized_Sheets/Directors.csv")
+stars_df = pd.read_csv("Normalization Code/Final_Normalized_Sheets/Stars.csv")
+film_genre_df = pd.read_csv("Normalization Code/Final_Normalized_Sheets/FilmGenre.csv")
+film_director_df = pd.read_csv("Normalization Code/Final_Normalized_Sheets/FilmDirector.csv")
+film_star_df = pd.read_csv("Normalization Code/Final_Normalized_Sheets/FilmStar.csv")
 
 # Custom CSS
 st.markdown(

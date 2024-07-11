@@ -32,7 +32,7 @@ Post-scraping, the data underwent thorough processing and analysis:
   ![Initial Data Structure](./Images/Scraped.png)
 
 ## After-Processing of the Data
-
+![](./Images/After%20Preprocessing.png)
 
 ## How to Use
 

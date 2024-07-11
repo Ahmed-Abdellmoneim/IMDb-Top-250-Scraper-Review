@@ -45,3 +45,10 @@ You can install the required libraries using pip:
 ```bash
 pip install selenium pandas tqdm
 ```
+
+## Authors
+
+- **Ahmed Abdelmoneim**: Handled data cleaning, preprocessing, and storing the data in CSV format.
+- **Mazen Ashraf**: Responsible for developing the web scraping script using Selenium and Python.
+
+

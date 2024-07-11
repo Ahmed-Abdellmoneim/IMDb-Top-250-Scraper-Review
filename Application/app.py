@@ -9,45 +9,45 @@ from transformers import AutoTokenizer
 import numpy as np
 import os
 
-# Initialize the tokenizer
-model_name = "bert-base-multilingual-cased"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+# # Initialize the tokenizer
+# model_name = "bert-base-multilingual-cased"
+# tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 
-# Define the model architecture
-class ReviewRankPredictor(nn.Module):
-    def __init__(self, input_dim, hidden_dim, output_dim):
-        super(ReviewRankPredictor, self).__init__()
-        self.fc1 = nn.Linear(input_dim, hidden_dim)
-        self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
-        self.fc3 = nn.Linear(hidden_dim, output_dim)
+# # Define the model architecture
+# class ReviewRankPredictor(nn.Module):
+#     def __init__(self, input_dim, hidden_dim, output_dim):
+#         super(ReviewRankPredictor, self).__init__()
+#         self.fc1 = nn.Linear(input_dim, hidden_dim)
+#         self.relu = nn.ReLU()
+#         self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+#         self.fc3 = nn.Linear(hidden_dim, output_dim)
 
-    def forward(self, x):
-        out = self.fc1(x)
-        out = self.relu(out)
-        out = self.fc2(out)
-        out = self.relu(out)
-        out = self.fc3(out)
-        return out
+#     def forward(self, x):
+#         out = self.fc1(x)
+#         out = self.relu(out)
+#         out = self.fc2(out)
+#         out = self.relu(out)
+#         out = self.fc3(out)
+#         return out
 
 
-# Parameters (ensure these match your training configuration)
-input_dim = 128  # Based on tokenizer max_length
-hidden_dim = 256
-output_dim = 10  # Number of unique ranks (classes)
+# # Parameters (ensure these match your training configuration)
+# input_dim = 128  # Based on tokenizer max_length
+# hidden_dim = 256
+# output_dim = 10  # Number of unique ranks (classes)
 
-# Initialize the model
-model = ReviewRankPredictor(input_dim, hidden_dim, output_dim)
+# # Initialize the model
+# model = ReviewRankPredictor(input_dim, hidden_dim, output_dim)
 
-# Load the saved model state dictionary
-model.load_state_dict(
-    torch.load("review_rank_predictor_model.pth", map_location=torch.device("cpu"))
-)
-model.eval()  # Set the model to evaluation mode
+# # Load the saved model state dictionary
+# model.load_state_dict(
+#     torch.load("review_rank_predictor_model.pth", map_location=torch.device("cpu"))
+# )
+# model.eval()  # Set the model to evaluation mode
 
-# Define the save path for the models
-save_path = "Application/Models/"
+# # Define the save path for the models
+# save_path = "Application/Models/"
 
 # Load data files
 films_df = pd.read_csv("Normalized Sheets/Films.csv")
@@ -100,36 +100,36 @@ elif main_page == "Review Rank Prediction":
     if st.button("Predict"):
         if headline.strip() == "" or user_text.strip() == "":
             st.error("Please fill out both headline and review fields.")
-        elif len(user_text) >= 600:
-            # Combine headline and review
-            combined_text = headline + " " + user_text
+        # elif len(user_text) >= 600:
+        #     # Combine headline and review
+        #     combined_text = headline + " " + user_text
 
-            # Tokenize the combined text
-            encoding = tokenizer(
-                combined_text,
-                truncation=True,
-                padding="max_length",
-                max_length=128,
-                return_tensors="pt",
-            )
+        #     # Tokenize the combined text
+        #     encoding = tokenizer(
+        #         combined_text,
+        #         truncation=True,
+        #         padding="max_length",
+        #         max_length=128,
+        #         return_tensors="pt",
+        #     )
 
-            # Make predictions
-            with torch.no_grad():
-                inputs = (
-                    encoding["input_ids"].squeeze(1).float()
-                )  # Squeeze to remove extra dimensions and convert to float
-                outputs = model(inputs)
-                predicted_class = torch.argmax(outputs, dim=1).item()
+        #     # Make predictions
+        #     with torch.no_grad():
+        #         inputs = (
+        #             encoding["input_ids"].squeeze(1).float()
+        #         )  # Squeeze to remove extra dimensions and convert to float
+        #         outputs = model(inputs)
+        #         predicted_class = torch.argmax(outputs, dim=1).item()
 
-            # Display the rating
-            st.write(
-                f"The predicted rating for your review is: {predicted_class} out of 10"
-            )
-            st.success("Review submitted successfully!")
-        else:
-            st.write(
-                "Please enter a review text with at least 600 characters to get a prediction."
-            )
+        #     # Display the rating
+        #     st.write(
+        #         f"The predicted rating for your review is: {predicted_class} out of 10"
+        #     )
+        #     st.success("Review submitted successfully!")
+        # else:
+        #     st.write(
+        #         "Please enter a review text with at least 600 characters to get a prediction."
+        #     )
 
 elif main_page == "Analysis Page":
     st.sidebar.title("Analysis Navigation")

@@ -143,7 +143,7 @@ elif main_page == "Review Rank Prediction":
 
 elif main_page == "Analysis Page":
     st.sidebar.title("Analysis Navigation")
-    st.sidebar.image("Images/last analysis mn3m.jpg", caption="Your Image Caption", use_column_width=True)
+    st.sidebar.image("Images/last analysis mn3m.jpg", use_column_width=True)
     analysis_option = st.sidebar.selectbox(
         "Select a view",
         [

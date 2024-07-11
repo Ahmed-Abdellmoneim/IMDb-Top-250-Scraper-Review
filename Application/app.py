@@ -80,8 +80,18 @@ main_page = st.sidebar.selectbox(
 )
 
 if main_page == "Home":
-    st.title("Home")
-    st.write("Welcome to the Film Database Dashboard!")
+    st.title("IMDb Top 250 Movie")
+    st.subheader("Discover, Analyze, and Predict Movie's Review Ratings")
+    st.write("""
+            This dashboard allows you to explore various aspects of the IMDb top 250 movies. 
+            Whether you're a movie enthusiast, data analyst, or someone looking to delve into the intricacies of film data, 
+            his tool offers something for everyone. 
+            ## Features:
+             **Review Rank Prediction**: Predict the ranking of your review based on your input. 
+            urious how your review might fare among other IMDb users? Use our prediction model to find out!
+
+             **IMDb Analysis**: Dive deep into the IMDb top 250 movies with various analyses on genres, 
+            irectors, stars, and more. Understand trends, uncover patterns, and gain insights into the world of cinema.""")
 
 elif main_page == "Review Rank Prediction":
     st.title("Review Rank Prediction")

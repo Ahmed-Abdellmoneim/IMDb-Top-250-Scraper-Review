@@ -76,7 +76,7 @@ st.markdown(
 
 st.sidebar.title("Main Navigation")
 main_page = st.sidebar.selectbox(
-    "Select a Page", ["Home", "Review Rank Prediction", "Analysis Page"]
+    "Select a Page", ["Home", "Analysis Page"]
 )
 
 if main_page == "Home":
@@ -93,23 +93,23 @@ if main_page == "Home":
              **IMDb Analysis**: Dive deep into the IMDb top 250 movies with various analyses on genres, 
             irectors, stars, and more. Understand trends, uncover patterns, and gain insights into the world of cinema.""")
 
-elif main_page == "Review Rank Prediction":
-    st.title("Review Rank Prediction")
+# elif main_page == "Review Rank Prediction":
+#     st.title("Review Rank Prediction")
 
-    # Add text input fields
-    headline = st.text_input("Write a headline for your review here:")
-    user_text = st.text_area("Write your review here:")
+#     # Add text input fields
+#     headline = st.text_input("Write a headline for your review here:")
+#     user_text = st.text_area("Write your review here:")
 
-    # Display character count
-    st.markdown(
-        f'<p class="char-counter">Required characters: 600</p>', unsafe_allow_html=True
-    )
-    st.write(f"Character count: {len(user_text)}")
+#     # Display character count
+#     st.markdown(
+#         f'<p class="char-counter">Required characters: 600</p>', unsafe_allow_html=True
+#     )
+#     st.write(f"Character count: {len(user_text)}")
 
-    # Predict button
-    if st.button("Predict"):
-        if headline.strip() == "" or user_text.strip() == "":
-            st.error("Please fill out both headline and review fields.")
+#     # Predict button
+#     if st.button("Predict"):
+#         if headline.strip() == "" or user_text.strip() == "":
+#             st.error("Please fill out both headline and review fields.")
         # elif len(user_text) >= 600:
         #     # Combine headline and review
         #     combined_text = headline + " " + user_text
